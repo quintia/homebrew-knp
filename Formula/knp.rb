@@ -15,8 +15,8 @@ class Knp < Formula
   
   def patches
     [
-      "https://github.com/tskoba/homebrew-knp/tree/master/Formula/remove-CRF++.patch",
-      "https://github.com/tskoba/homebrew-knp/tree/master/Formula/remove-cdb.patch"
+      "https://raw.githubusercontent.com/tskoba/homebrew-knp/master/Formula/remove-CRF%2B%2B.patch",
+      "https://raw.githubusercontent.com/tskoba/homebrew-knp/master/Formula/remove-cdb.patch"
     ]
   end
   
