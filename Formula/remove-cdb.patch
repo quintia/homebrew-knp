@@ -1,0 +1,18 @@
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -2,13 +2,13 @@
+ snapshot:
+ 	$(MAKE) dist distdir=$(PACKAGE)-`date +"%Y%m%d"`
+ 
+-SUBDIRS = cdb crf distsim system rule dict doc
++SUBDIRS = crf distsim system rule dict doc
+ 
+ knprcdir=$(sysconfdir)
+ nodist_knprc_DATA = knprc
+ dist_noinst_DATA = knprc.in
+ CLEANFILES = knprc
+-EXTRA_DIST = autogen.sh perl cdb
++EXTRA_DIST = autogen.sh perl
+ 
+ knprc: knprc.in config.status
+ 	rm -f $@ $@.tmp

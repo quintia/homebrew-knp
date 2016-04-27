@@ -1,0 +1,43 @@
+--- a/configure.ac
++++ b/configure.ac
+@@ -3,7 +3,6 @@
+ AC_PREREQ(2.53)
+ AC_REVISION($Revision: 1.74 $)
+ AC_CONFIG_SRCDIR([system/main.c])
+-AC_CONFIG_SUBDIRS([CRF++-0.58])
+ AM_INIT_AUTOMAKE(${PACKAGE_NAME}, ${PACKAGE_VERSION})
+ AM_CONFIG_HEADER([config.h])
+ CF_VERSION="CF1.1"
+@@ -59,8 +58,8 @@
+ AM_CONDITIONAL(SVM_MODEL_EXIST, test "x$svm_model_exist" = xyes)
+ 
+ SUBDIRS="crf $SUBDIRS"
+-CRF_CFLAGS="-I$packagesrcdir/CRF++-0.58 -I$packagesrcdir/crf -DUSE_CRF"
+-KNP_LIBS="$KNP_LIBS $packagesrcdir/crf/libcrf.la $packagesrcdir/CRF++-0.58/.libs/libcrfpp.a"
++CRF_CFLAGS="-I$packagesrcdir/crf -DUSE_CRF"
++KNP_LIBS="$KNP_LIBS $packagesrcdir/crf/libcrf.la -lcrfpp"
+ LIBCRF_VERSION_INFO="0:0:1"
+ AC_SUBST(LIBCRF_VERSION_INFO)
+ crf_model_exist=yes
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -2,7 +2,7 @@
+ snapshot:
+ 	$(MAKE) dist distdir=$(PACKAGE)-`date +"%Y%m%d"`
+ 
+-SUBDIRS = cdb crf CRF++-0.58 distsim system rule dict doc
++SUBDIRS = cdb crf distsim system rule dict doc
+ 
+ knprcdir=$(sysconfdir)
+ nodist_knprc_DATA = knprc
+--- a/crf/Makefile.am
++++ b/crf/Makefile.am
+@@ -8,8 +8,6 @@
+ libcrf_la_LDFLAGS = -version-info @LIBCRF_VERSION_INFO@
+ 
+ all:
+-	$(MAKE) -C ../CRF++-0.58
+ 
+ clean:
+ 	rm -rf crf.lo crf.o libcrf.la .libs
+-	$(MAKE) -C ../CRF++-0.58 clean
