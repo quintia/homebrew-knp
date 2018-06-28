@@ -1,7 +1,7 @@
 # homebrew-knp
 
 ```
-$ brew tap tskoba/knp
+$ brew tap quintia/knp
 $ brew install knp
 ```
 
